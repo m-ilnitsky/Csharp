@@ -10,81 +10,83 @@ namespace Task01_Rooms
     {
         static void Main(string[] args)
         {
-            int entranceNumber = 0;
+            const int FLOOR_ROOMS_COUNT = 4;
+
+            int entrancesCount = 0;
             do
             {
                 Console.Write("Введите число подъездов: ");
-                entranceNumber = Convert.ToInt32(Console.ReadLine());
-                if (entranceNumber < 1)
+                entrancesCount = Convert.ToInt32(Console.ReadLine());
+                if (entrancesCount < 1)
                 {
                     Console.WriteLine("ОШИБКА: Число подъездов должно быть не меньше 1!");
                 }
             }
-            while (entranceNumber < 1);
+            while (entrancesCount < 1);
 
-            int floorNumber = 0;
+            int floorsCount = 0;
             do
             {
                 Console.Write("Введите число этажей: ");
-                floorNumber = Convert.ToInt32(Console.ReadLine());
-                if (floorNumber < 1)
+                floorsCount = Convert.ToInt32(Console.ReadLine());
+                if (floorsCount < 1)
                 {
                     Console.WriteLine("ОШИБКА: Число этажей должно быть не меньше 1!");
                 }
             }
-            while (floorNumber < 1);
+            while (floorsCount < 1);
 
-            uint entranceRoomsNumber = (uint)floorNumber * 4;
-            uint homeRoomsNumber = (uint)entranceNumber * entranceRoomsNumber;
+            int entranceRoomsCount = floorsCount * FLOOR_ROOMS_COUNT;
+            int homeRoomsCount = entrancesCount * entranceRoomsCount;
 
             Console.WriteLine();
-            Console.WriteLine("В доме {0} подъездов", entranceNumber);
-            Console.WriteLine("В доме {0} этажей", floorNumber);
-            Console.WriteLine("В доме {0} квартир", homeRoomsNumber);
+            Console.WriteLine("В доме {0} подъездов", entrancesCount);
+            Console.WriteLine("В доме {0} этажей", floorsCount);
+            Console.WriteLine("В доме {0} квартир", homeRoomsCount);
 
-            int room = 0;
+            int roomNumber = 0;
             do
             {
                 Console.Write("Введите номер квартиры: ");
-                room = Convert.ToInt32(Console.ReadLine());
-                if (room < 1)
+                roomNumber = Convert.ToInt32(Console.ReadLine());
+                if (roomNumber < 1)
                 {
                     Console.WriteLine("ОШИБКА: Номер квартиры должен быть не меньше 1!");
                 }
-                else if (room > homeRoomsNumber)
+                else if (roomNumber > homeRoomsCount)
                 {
                     Console.WriteLine("ОШИБКА: Номер квартиры слишком большой (квартир меньше чем введённый номер)!");
                 }
             }
-            while (room < 1 || room > homeRoomsNumber);
+            while (roomNumber < 1 || roomNumber > homeRoomsCount);
 
-            uint roomFromZero = (uint)room - 1;
-            uint entranceFromZero = roomFromZero / entranceRoomsNumber;
-            uint floorFromZero = (roomFromZero - entranceRoomsNumber * entranceFromZero) / 4;
-            uint positionFromZero = (roomFromZero - entranceRoomsNumber * entranceFromZero) % 4;
+            int roomNumberFromZero = roomNumber - 1;
+            int entranceNumber = roomNumberFromZero / entranceRoomsCount + 1;
+            int floorNumber = (roomNumberFromZero - entranceRoomsCount * (entranceNumber - 1)) / FLOOR_ROOMS_COUNT + 1;
+            int position = (roomNumberFromZero - entranceRoomsCount * (entranceNumber - 1)) % FLOOR_ROOMS_COUNT;
 
             Console.WriteLine();
-            Console.WriteLine("В доме {0} подъездов, {1} этажей, {2} квартир", entranceNumber, floorNumber, homeRoomsNumber);
-            Console.WriteLine("В подъезде {0} квартир", entranceRoomsNumber);
+            Console.WriteLine("В доме {0} подъездов, {1} этажей, {2} квартир", entrancesCount, floorsCount, homeRoomsCount);
+            Console.WriteLine("В подъезде {0} квартир", entranceRoomsCount);
 
-            Console.WriteLine("Квартира №{0} находится в {1} подъезде на {2} этаже", room, entranceFromZero + 1, floorFromZero + 1);
+            Console.WriteLine("Квартира №{0} находится в {1} подъезде на {2} этаже", roomNumber, entranceNumber, floorNumber);
 
-            switch (positionFromZero)
+            switch (position)
             {
                 case 0:
-                    Console.WriteLine("Квартира №{0} ближняя слева", room);
+                    Console.WriteLine("Квартира №{0} ближняя слева", roomNumber);
                     break;
                 case 1:
-                    Console.WriteLine("Квартира №{0} дальняя слева", room);
+                    Console.WriteLine("Квартира №{0} дальняя слева", roomNumber);
                     break;
                 case 2:
-                    Console.WriteLine("Квартира №{0} дальняя справа", room);
+                    Console.WriteLine("Квартира №{0} дальняя справа", roomNumber);
                     break;
                 case 3:
-                    Console.WriteLine("Квартира №{0} ближняя справа", room);
+                    Console.WriteLine("Квартира №{0} ближняя справа", roomNumber);
                     break;
                 default:
-                    Console.WriteLine("ОШИБКА: Квартира №{0} находится НЕПОНЯТНО ГДЕ!", room);
+                    Console.WriteLine("ОШИБКА: Квартира №{0} находится НЕПОНЯТНО ГДЕ!", roomNumber);
                     break;
             }
 
