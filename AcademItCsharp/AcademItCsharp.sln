@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task01_Rooms", "..\Task01Rooms\Task01_Rooms.csproj", "{1D7D3A70-4153-4F66-BF3D-D13CB04BE827}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task02_MultiplicationTable", "Task02_MultiplicationTable\Task02_MultiplicationTable.csproj", "{E9F37221-0CD6-42FF-AFD9-AE184E40A87A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1D7D3A70-4153-4F66-BF3D-D13CB04BE827}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D7D3A70-4153-4F66-BF3D-D13CB04BE827}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D7D3A70-4153-4F66-BF3D-D13CB04BE827}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9F37221-0CD6-42FF-AFD9-AE184E40A87A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9F37221-0CD6-42FF-AFD9-AE184E40A87A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9F37221-0CD6-42FF-AFD9-AE184E40A87A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9F37221-0CD6-42FF-AFD9-AE184E40A87A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
