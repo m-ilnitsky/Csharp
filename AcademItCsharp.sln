@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task03_MultiplicationTable_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task04_Palindrome", "Task04_Palindrome\Task04_Palindrome.csproj", "{F199FF21-9D8A-4649-ACD4-2478A477E236}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task05_Range", "Task05_Range\Task05_Range.csproj", "{F7D7ABD8-82F5-4DDB-832C-713507AC8CA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F199FF21-9D8A-4649-ACD4-2478A477E236}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F199FF21-9D8A-4649-ACD4-2478A477E236}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F199FF21-9D8A-4649-ACD4-2478A477E236}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7D7ABD8-82F5-4DDB-832C-713507AC8CA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7D7ABD8-82F5-4DDB-832C-713507AC8CA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7D7ABD8-82F5-4DDB-832C-713507AC8CA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7D7ABD8-82F5-4DDB-832C-713507AC8CA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
