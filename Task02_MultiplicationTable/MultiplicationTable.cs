@@ -7,33 +7,37 @@ namespace Task02_MultiplicationTable
     {
         static void Main(string[] args)
         {
-            const int MIN = 2;
-            const int MAX = 28;
-            Console.Write("Введите максимальное число таблицы умножения (от {0} до {1}): ", MIN, MAX);
+            const int min = 2;
+            const int max = 28;
+
+            Console.Write("Введите максимальное число таблицы умножения (от {0} до {1}): ", min, max);
             int maxNumber = Convert.ToInt32(Console.ReadLine());
-            if (maxNumber < MIN)
+
+            if (maxNumber < min)
             {
-                Console.WriteLine("ОШИБКА: Число меньше {0}! Поэтому будем считать, что оно равно {0}", MIN);
-                maxNumber = MIN;
+                Console.WriteLine("ОШИБКА: Число меньше {0}! Поэтому будем считать, что оно равно {0}", min);
+                maxNumber = min;
             }
-            else if (maxNumber > MAX)
+            else if (maxNumber > max)
             {
-                Console.WriteLine("ОШИБКА: Число больше {0}! Поэтому будем считать, что оно равно {0}", MAX);
-                maxNumber = MAX;
+                Console.WriteLine("ОШИБКА: Число больше {0}! Поэтому будем считать, что оно равно {0}", max);
+                maxNumber = max;
             }
+
+            Console.WriteLine();
 
             int lineLength = 0;
-            for (int j = 1; j <= maxNumber; j++)
+            for (int i = 1; i <= maxNumber; i++)
             {
-                int maxLength = Convert.ToString(maxNumber * j).Length;
+                int maxLength = Convert.ToString(maxNumber * i).Length;
                 lineLength += maxLength + 1;
 
-                if (j == 1)
+                if (i == 1)
                 {
                     Console.Write(" {0," + maxLength + "}  ", "");
                 }
 
-                Console.Write(" {0," + maxLength + "}", j);
+                Console.Write(" {0," + maxLength + "}", i);
             }
             Console.WriteLine();
 
@@ -52,16 +56,11 @@ namespace Task02_MultiplicationTable
 
             for (int i = 1; i <= maxNumber; i++)
             {
+                Console.Write(" {0," + Convert.ToString(maxNumber).Length + "} |", i);
+
                 for (int j = 1; j <= maxNumber; j++)
                 {
-                    int maxLength = Convert.ToString(maxNumber * j).Length;
-
-                    if (j == 1)
-                    {
-                        Console.Write(" {0," + maxLength + "} |", i * j);
-                    }
-
-                    Console.Write(" {0," + maxLength + "}", i * j);
+                    Console.Write(" {0," + Convert.ToString(maxNumber * j).Length + "}", i * j);
                 }
                 Console.WriteLine(" |");
             }
