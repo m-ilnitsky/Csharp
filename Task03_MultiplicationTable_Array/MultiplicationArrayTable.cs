@@ -5,21 +5,17 @@ namespace Task03_MultiplicationTable_Array
 {
     class MultiplicationArrayTable
     {
-        static int[][] GetMultiplicationTable(int minX, int maxX, int minY, int maxY)
+        private static int[,] GetMultiplicationTable(int minX, int maxX, int minY, int maxY)
         {
-            int[][] multiplicationTable = new int[maxY - minY + 1][];
-
-            int xSize = maxX - minX + 1;
+            int[,] multiplicationTable = new int[maxY - minY + 1, maxX - minX + 1];
 
             int yIndex = 0;
             for (int i = minY; i <= maxY; ++i)
             {
-                multiplicationTable[yIndex] = new int[xSize];
-
                 int xIndex = 0;
                 for (int j = minX; j <= maxX; ++j)
                 {
-                    multiplicationTable[yIndex][xIndex] = i * j;
+                    multiplicationTable[yIndex, xIndex] = i * j;
                     ++xIndex;
                 }
 
@@ -29,7 +25,7 @@ namespace Task03_MultiplicationTable_Array
             return multiplicationTable;
         }
 
-        static int[] GetArray(int min, int max)
+        private static int[] GetArray(int min, int max)
         {
             int[] array = new int[max - min + 1];
 
@@ -43,22 +39,14 @@ namespace Task03_MultiplicationTable_Array
             return array;
         }
 
-        static void PrintRow(int[] values, int[] valueLengthes)
-        {
-            for (int i = 0; i < values.Length; ++i)
-            {
-                Console.Write(" {0," + valueLengthes[i] + "}", values[i]);
-            }
-        }
-
-        static void PrintMultiplicationTable(int[][] multiplicationTable, int[] xArray, int[] yArray)
+        private static void PrintMultiplicationTable(int[,] multiplicationTable, int[] xArray, int[] yArray)
         {
             int leftColumnLength = yArray[yArray.Length - 1].ToString().Length;
             int lineLength = 0;
             int[] maxLength = new int[xArray.Length];
             for (int i = 0; i < xArray.Length; ++i)
             {
-                maxLength[i] = multiplicationTable[yArray.Length - 1][i].ToString().Length;
+                maxLength[i] = multiplicationTable[yArray.Length - 1, i].ToString().Length;
                 lineLength += maxLength[i] + 1;
             }
             lineLength++;
@@ -73,7 +61,10 @@ namespace Task03_MultiplicationTable_Array
             string line = sb.ToString();
 
             Console.Write(" {0," + leftColumnLength + "}  ", "");
-            PrintRow(xArray, maxLength);
+            for (int i = 0; i < xArray.Length; ++i)
+            {
+                Console.Write(" {0," + maxLength[i] + "}", xArray[i]);
+            }
             Console.WriteLine();
 
             Console.Write(" {0," + leftColumnLength + "} ", "");
@@ -82,7 +73,10 @@ namespace Task03_MultiplicationTable_Array
             for (int i = 0; i < yArray.Length; i++)
             {
                 Console.Write(" {0," + leftColumnLength + "} |", yArray[i]);
-                PrintRow(multiplicationTable[i], maxLength);
+                for (int j = 0; j < maxLength.Length; ++j)
+                {
+                    Console.Write(" {0," + maxLength[j] + "}", multiplicationTable[i, j]);
+                }
                 Console.WriteLine(" |");
             }
 
@@ -92,10 +86,7 @@ namespace Task03_MultiplicationTable_Array
 
         static void Main(string[] args)
         {
-            int xMin = 0;
-            int xMax = 0;
-            int yMin = 0;
-            int yMax = 0;
+            int xMin, xMax, yMin, yMax;
 
             do
             {
@@ -137,7 +128,7 @@ namespace Task03_MultiplicationTable_Array
             }
             while (yMin >= yMax || yMin < 1);
 
-            int[][] table = GetMultiplicationTable(xMin, xMax, yMin, yMax);
+            int[,] table = GetMultiplicationTable(xMin, xMax, yMin, yMax);
             int[] xArray = GetArray(xMin, xMax);
             int[] yArray = GetArray(yMin, yMax);
 
