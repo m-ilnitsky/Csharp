@@ -5,39 +5,61 @@ namespace Task06_Blur
 {
     class Blur
     {
+        private static byte getByte(double color)
+        {
+            if (color < 0)
+            {
+                return 0;
+            }
+            else if (color > 255)
+            {
+                return 255;
+            }              
+           
+            return (byte)color;
+        }
+
         private static Bitmap Convolution(Bitmap inputImage, double[,] matrix)
         {
             Bitmap resultImage = new Bitmap(inputImage);
 
-            if (matrix.GetLength(0) != 3 || matrix.GetLength(1) != 3)
+            if (matrix.GetLength(0) != matrix.GetLength(1))
             {
-                Console.WriteLine("ОШИБКА: Размер матрицы свёртки должен быть 3х3. Изображение не будет преобразовано.");
+                Console.WriteLine("ОШИБКА: Матрица не квадратная! Изображение не будет преобразовано!");
+                return resultImage;
+            }
+            else if (matrix.GetLength(0) % 2 == 0)
+            {
+                Console.WriteLine("ОШИБКА: Матрица чётного размера! Изображение не будет преобразовано!");
                 return resultImage;
             }
 
-            int height = inputImage.Height - 1;
-            int width = inputImage.Width - 1;
+            int matrixSize = matrix.GetLength(0);
+            int matrixShift = matrixSize / 2;
 
-            for (int y = 1; y < height; ++y)
+            int height = inputImage.Height - matrixShift;
+            int width = inputImage.Width - matrixShift;
+
+            for (int y = matrixShift; y < height; ++y)
             {
-                for (int x = 1; x < width; ++x)
+                for (int x = matrixShift; x < width; ++x)
                 {
                     double r = 0;
                     double g = 0;
                     double b = 0;
 
-                    for (int i = 0; i < 3; ++i)
+                    for (int i = 0; i < matrixSize; ++i)
                     {
-                        for (int j = 0; j < 3; ++j)
+                        for (int j = 0; j < matrixSize; ++j)
                         {
-                            Color matrixPixel = inputImage.GetPixel(x - 1 + j, y - 1 + i);
+                            Color matrixPixel = inputImage.GetPixel(x - matrixShift + j, y - matrixShift + i);
                             r += matrixPixel.R * matrix[j, i];
                             g += matrixPixel.G * matrix[j, i];
                             b += matrixPixel.B * matrix[j, i];
                         }
                     }
 
-                    resultImage.SetPixel(x, y, Color.FromArgb((byte)r, (byte)g, (byte)b));
+                    resultImage.SetPixel(x, y, Color.FromArgb(getByte(r), getByte(g), getByte(b)));
                 }
             }
 
@@ -75,7 +97,7 @@ namespace Task06_Blur
                 for (int x = 0; x < resultImage.Width; ++x)
                 {
                     Color pixel = resultImage.GetPixel(x, y);
-                    byte rgb = (byte)(pixel.R * coeffR + pixel.G * coeffG + pixel.B * coeffB);
+                    byte rgb = getByte(pixel.R * coeffR + pixel.G * coeffG + pixel.B * coeffB);
                     Color newColor = Color.FromArgb(rgb, rgb, rgb);
 
                     resultImage.SetPixel(x, y, newColor);
@@ -97,30 +119,33 @@ namespace Task06_Blur
             invertedColorImage.Save("outInvertedColor.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
             Console.WriteLine("invertedColorImage Ok!");
 
-            double[,] blurMatrix = {
-                {1.0/9, 1.0/9, 1.0/9 },
-                {1.0/9, 1.0/9, 1.0/9 },
-                {1.0/9, 1.0/9, 1.0/9 }
+            double[,] blurMatrix =
+            {
+                { 1.0 / 9,  1.0 / 9,  1.0 / 9 },
+                { 1.0 / 9,  1.0 / 9,  1.0 / 9 },
+                { 1.0 / 9,  1.0 / 9,  1.0 / 9 }
             };
 
             Bitmap bluredImage = Convolution(image, blurMatrix);
             bluredImage.Save("outBlured.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
             Console.WriteLine("bluredImage Ok!");
 
-            double[,] sharpnessMatrix = {
-                {0, -1, 0 },
-                {-1, 5, -1 },
-                {0, -1, 0 }
+            double[,] sharpnessMatrix = 
+            {
+                {  0, -1,  0 },
+                { -1,  5, -1 },
+                {  0, -1,  0 }
             };
 
             Bitmap sharpedImage = Convolution(image, sharpnessMatrix);
             sharpedImage.Save("outSharped.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
             Console.WriteLine("sharpedImage Ok!");
 
-            double[,] stampingMatrix = {
-                {0, 1, 0 },
-                {-1, 0, 1 },
-                {0, -1, 0 }
+            double[,] stampingMatrix =
+            {
+                {  0,  1, 0 },
+                { -1,  0, 1 },
+                {  0, -1, 0 }
             };
 
             Bitmap stampedImage = Convolution(blackAndWhiteImage, stampingMatrix);
