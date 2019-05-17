@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Task03_MultiplicationTable_Array
 {
@@ -49,19 +46,19 @@ namespace Task03_MultiplicationTable_Array
         static void PrintRow(int[] values, int[] valueLengthes)
         {
             for (int i = 0; i < values.Length; ++i)
-            {  
+            {
                 Console.Write(" {0," + valueLengthes[i] + "}", values[i]);
-            }            
+            }
         }
 
         static void PrintMultiplicationTable(int[][] multiplicationTable, int[] xArray, int[] yArray)
         {
-            int leftColumnLength = yArray[yArray.Length-1].ToString().Length;
+            int leftColumnLength = yArray[yArray.Length - 1].ToString().Length;
             int lineLength = 0;
             int[] maxLength = new int[xArray.Length];
-            for(int i=0;i<xArray.Length;++i)
+            for (int i = 0; i < xArray.Length; ++i)
             {
-                maxLength[i]=multiplicationTable[yArray.Length-1][i].ToString().Length;
+                maxLength[i] = multiplicationTable[yArray.Length - 1][i].ToString().Length;
                 lineLength += maxLength[i] + 1;
             }
             lineLength++;
@@ -88,17 +85,17 @@ namespace Task03_MultiplicationTable_Array
                 PrintRow(multiplicationTable[i], maxLength);
                 Console.WriteLine(" |");
             }
-           
+
             Console.Write(" {0," + leftColumnLength + "} ", "");
             Console.WriteLine(line);
         }
 
         static void Main(string[] args)
         {
-            int xMin =0;
-            int xMax =0; 
-            int yMin=0;
-            int yMax=0;
+            int xMin = 0;
+            int xMax = 0;
+            int yMin = 0;
+            int yMax = 0;
 
             do
             {
@@ -111,11 +108,15 @@ namespace Task03_MultiplicationTable_Array
 
                 if (xMin >= xMax)
                 {
-                    Console.WriteLine("ОШИБКА: Начальное значение должно быть меньше конечного!");                  
+                    Console.WriteLine("ОШИБКА: Начальное значение должно быть меньше конечного!");
+                }
+                if (xMin < 1)
+                {
+                    Console.WriteLine("ОШИБКА: Начальное значение должно быть не меньше единицы!");
                 }
             }
-            while(xMin >= xMax);   
-            
+            while (xMin >= xMax || xMin < 1);
+
             do
             {
                 Console.WriteLine();
@@ -127,14 +128,18 @@ namespace Task03_MultiplicationTable_Array
 
                 if (yMin >= yMax)
                 {
-                    Console.WriteLine("ОШИБКА: Начальное значение должно быть меньше конечного!");                  
+                    Console.WriteLine("ОШИБКА: Начальное значение должно быть меньше конечного!");
+                }
+                if (yMin < 1)
+                {
+                    Console.WriteLine("ОШИБКА: Начальное значение должно быть не меньше единицы!");
                 }
             }
-            while(yMin >= yMax);
+            while (yMin >= yMax || yMin < 1);
 
-            int[][] table = GetMultiplicationTable(xMin,xMax,yMin,yMax);
-            int[] xArray = GetArray(xMin,xMax);
-            int[] yArray = GetArray(yMin,yMax);
+            int[][] table = GetMultiplicationTable(xMin, xMax, yMin, yMax);
+            int[] xArray = GetArray(xMin, xMax);
+            int[] yArray = GetArray(yMin, yMax);
 
             Console.WriteLine();
             PrintMultiplicationTable(table, xArray, yArray);
