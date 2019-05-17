@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task01_Rooms
 {
@@ -10,9 +6,9 @@ namespace Task01_Rooms
     {
         static void Main(string[] args)
         {
-            const int FLOOR_ROOMS_COUNT = 4;
+            const int roomsOnFloorCount = 4;
 
-            int entrancesCount = 0;
+            int entrancesCount;
             do
             {
                 Console.Write("Введите число подъездов: ");
@@ -24,7 +20,7 @@ namespace Task01_Rooms
             }
             while (entrancesCount < 1);
 
-            int floorsCount = 0;
+            int floorsCount;
             do
             {
                 Console.Write("Введите число этажей: ");
@@ -36,7 +32,7 @@ namespace Task01_Rooms
             }
             while (floorsCount < 1);
 
-            int entranceRoomsCount = floorsCount * FLOOR_ROOMS_COUNT;
+            int entranceRoomsCount = floorsCount * roomsOnFloorCount;
             int homeRoomsCount = entrancesCount * entranceRoomsCount;
 
             Console.WriteLine();
@@ -44,7 +40,7 @@ namespace Task01_Rooms
             Console.WriteLine("В доме {0} этажей", floorsCount);
             Console.WriteLine("В доме {0} квартир", homeRoomsCount);
 
-            int roomNumber = 0;
+            int roomNumber;
             do
             {
                 Console.Write("Введите номер квартиры: ");
@@ -62,8 +58,8 @@ namespace Task01_Rooms
 
             int roomNumberFromZero = roomNumber - 1;
             int entranceNumber = roomNumberFromZero / entranceRoomsCount + 1;
-            int floorNumber = (roomNumberFromZero - entranceRoomsCount * (entranceNumber - 1)) / FLOOR_ROOMS_COUNT + 1;
-            int position = (roomNumberFromZero - entranceRoomsCount * (entranceNumber - 1)) % FLOOR_ROOMS_COUNT;
+            int floorNumber = (roomNumberFromZero - entranceRoomsCount * (entranceNumber - 1)) / roomsOnFloorCount + 1;
+            int position = (roomNumberFromZero - entranceRoomsCount * (entranceNumber - 1)) % roomsOnFloorCount;
 
             Console.WriteLine();
             Console.WriteLine("В доме {0} подъездов, {1} этажей, {2} квартир", entrancesCount, floorsCount, homeRoomsCount);
