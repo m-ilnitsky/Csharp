@@ -47,8 +47,10 @@ namespace Task02_MultiplicationTable
             }
 
             int prefixLength = Convert.ToString(maxNumber).Length;
+            string line = sb.ToString();
+
             Console.Write(" {0," + prefixLength + "} +", "");
-            Console.Write(sb.ToString());
+            Console.Write(line);
             Console.WriteLine("-+");
 
             for (int i = 1; i <= maxNumber; i++)
@@ -68,7 +70,7 @@ namespace Task02_MultiplicationTable
             }
 
             Console.Write(" {0," + prefixLength + "} +", "");
-            Console.Write(sb.ToString());
+            Console.Write(line);
             Console.WriteLine("-+");
 
             Console.ReadLine();
