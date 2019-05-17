@@ -4,49 +4,45 @@ namespace Task05_Range
 {
     class Range
     {
-        private double from;
-        private double to;
-
         public Range(double from, double to)
         {
             if (from <= to)
             {
-                this.from = from;
-                this.to = to;
+                From = from;
+                To = to;
             }
             else
             {
-                this.from = to;
-                this.to = from;
+                From = to;
+                To = from;
             }
-
         }
 
         public double From
         {
-            get { return from; }
-            set { from = value; }
+            get;
+            set;
         }
 
         public double To
         {
-            get { return to; }
-            set { to = value; }
+            get;
+            set;
         }
 
-        public double getLength()
+        public double GetLength()
         {
-            return Math.Abs(to - from);
+            return To - From;
         }
 
         public bool IsInside(double point)
         {
-            return (from <= point) && (point <= to);
+            return (From <= point) && (point <= To);
         }
 
         public override string ToString()
         {
-            return "[" + from + " ; " + to + "]";
+            return "[" + From + " ; " + To + "]";
         }
     }
 }
