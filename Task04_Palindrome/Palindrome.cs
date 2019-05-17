@@ -4,7 +4,7 @@ namespace Task04_Palindrome
 {
     class Palindrome
     {
-        static bool IsPalindrome(string inputString)
+        private static bool IsPalindrome(string inputString)
         {
             for (int i = 0, j = inputString.Length - 1; i < j; ++i, --j)
             {
@@ -36,7 +36,10 @@ namespace Task04_Palindrome
                 "Я - арка края",
                 "О, лета тело!",
                 "Я не палиндром!",
-                "Тоже не палиндром.."
+                "Тоже не палиндром..",
+                "1234567",
+                "123454321",
+                "12344321"
             };
 
             foreach (string str in inputStrings)
