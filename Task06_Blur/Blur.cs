@@ -5,7 +5,7 @@ namespace Task06_Blur
 {
     class Blur
     {
-        private static byte getByte(double color)
+        private static byte GetByte(double color)
         {
             if (color < 0)
             {
@@ -14,8 +14,8 @@ namespace Task06_Blur
             else if (color > 255)
             {
                 return 255;
-            }              
-           
+            }
+
             return (byte)color;
         }
 
@@ -28,7 +28,7 @@ namespace Task06_Blur
                 Console.WriteLine("ОШИБКА: Матрица не квадратная! Изображение не будет преобразовано!");
                 return resultImage;
             }
-            else if (matrix.GetLength(0) % 2 == 0)
+            if (matrix.GetLength(0) % 2 == 0)
             {
                 Console.WriteLine("ОШИБКА: Матрица чётного размера! Изображение не будет преобразовано!");
                 return resultImage;
@@ -59,7 +59,7 @@ namespace Task06_Blur
                         }
                     }
 
-                    resultImage.SetPixel(x, y, Color.FromArgb(getByte(r), getByte(g), getByte(b)));
+                    resultImage.SetPixel(x, y, Color.FromArgb(GetByte(r), GetByte(g), GetByte(b)));
                 }
             }
 
@@ -97,7 +97,7 @@ namespace Task06_Blur
                 for (int x = 0; x < resultImage.Width; ++x)
                 {
                     Color pixel = resultImage.GetPixel(x, y);
-                    byte rgb = getByte(pixel.R * coeffR + pixel.G * coeffG + pixel.B * coeffB);
+                    byte rgb = GetByte(pixel.R * coeffR + pixel.G * coeffG + pixel.B * coeffB);
                     Color newColor = Color.FromArgb(rgb, rgb, rgb);
 
                     resultImage.SetPixel(x, y, newColor);
@@ -130,7 +130,7 @@ namespace Task06_Blur
             bluredImage.Save("outBlured.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
             Console.WriteLine("bluredImage Ok!");
 
-            double[,] sharpnessMatrix = 
+            double[,] sharpnessMatrix =
             {
                 {  0, -1,  0 },
                 { -1,  5, -1 },
