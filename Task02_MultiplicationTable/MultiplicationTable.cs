@@ -3,15 +3,15 @@ using System.Text;
 
 namespace Task02_MultiplicationTable
 {
-    class MultiplicationTable
+    internal class MultiplicationTable
     {
-        static void Main(string[] args)
+        private static void Main()
         {
             const int min = 2;
             const int max = 28;
 
             Console.Write("Введите максимальное число таблицы умножения (от {0} до {1}): ", min, max);
-            int maxNumber = Convert.ToInt32(Console.ReadLine());
+            var maxNumber = Convert.ToInt32(Console.ReadLine());
 
             if (maxNumber < min)
             {
@@ -26,46 +26,54 @@ namespace Task02_MultiplicationTable
 
             Console.WriteLine();
 
-            int lineLength = 0;
-            for (int i = 1; i <= maxNumber; i++)
+            var lineLength = 0;
+            string pattern;
+
+            for (var i = 1; i <= maxNumber; i++)
             {
-                int maxLength = Convert.ToString(maxNumber * i).Length;
+                var maxLength = Convert.ToString(maxNumber * i).Length;
                 lineLength += maxLength + 1;
+
+                pattern = " {0," + maxLength + "}";
 
                 if (i == 1)
                 {
-                    Console.Write(" {0," + maxLength + "}  ", "");
+                    Console.Write(pattern + "  ", "");
                 }
 
-                Console.Write(" {0," + maxLength + "}", i);
+                Console.Write(pattern, i);
             }
             Console.WriteLine();
 
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < lineLength; i++)
+            var sb = new StringBuilder();
+            for (var i = 0; i < lineLength; i++)
             {
                 sb.Append("-");
             }
 
-            int prefixLength = Convert.ToString(maxNumber).Length;
-            string line = sb.ToString();
+            var prefixLength = Convert.ToString(maxNumber).Length;
+            var line = sb.ToString();
 
-            Console.Write(" {0," + prefixLength + "} +", "");
+            pattern = " {0," + prefixLength + "} +";
+
+            Console.Write(pattern, "");
             Console.Write(line);
             Console.WriteLine("-+");
 
-            for (int i = 1; i <= maxNumber; i++)
+            for (var i = 1; i <= maxNumber; i++)
             {
-                Console.Write(" {0," + Convert.ToString(maxNumber).Length + "} |", i);
+                var pattern2 = " {0," + Convert.ToString(maxNumber).Length + "} |";
+                Console.Write(pattern2, i);
 
-                for (int j = 1; j <= maxNumber; j++)
+                for (var j = 1; j <= maxNumber; j++)
                 {
-                    Console.Write(" {0," + Convert.ToString(maxNumber * j).Length + "}", i * j);
+                    pattern2 = " {0," + Convert.ToString(maxNumber * j).Length + "}";
+                    Console.Write(pattern2, i * j);
                 }
                 Console.WriteLine(" |");
             }
 
-            Console.Write(" {0," + prefixLength + "} +", "");
+            Console.Write(pattern, "");
             Console.Write(line);
             Console.WriteLine("-+");
 

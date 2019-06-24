@@ -3,17 +3,17 @@ using System.Text;
 
 namespace Task03_MultiplicationTable_Array
 {
-    class MultiplicationArrayTable
+    internal class MultiplicationArrayTable
     {
         private static int[,] GetMultiplicationTable(int minX, int maxX, int minY, int maxY)
         {
-            int[,] multiplicationTable = new int[maxY - minY + 1, maxX - minX + 1];
+            var multiplicationTable = new int[maxY - minY + 1, maxX - minX + 1];
 
-            int yIndex = 0;
-            for (int i = minY; i <= maxY; ++i)
+            var yIndex = 0;
+            for (var i = minY; i <= maxY; ++i)
             {
-                int xIndex = 0;
-                for (int j = minX; j <= maxX; ++j)
+                var xIndex = 0;
+                for (var j = minX; j <= maxX; ++j)
                 {
                     multiplicationTable[yIndex, xIndex] = i * j;
                     ++xIndex;
@@ -27,10 +27,10 @@ namespace Task03_MultiplicationTable_Array
 
         private static int[] GetArray(int min, int max)
         {
-            int[] array = new int[max - min + 1];
+            var array = new int[max - min + 1];
 
-            int index = 0;
-            for (int i = min; i <= max; ++i)
+            var index = 0;
+            for (var i = min; i <= max; ++i)
             {
                 array[index] = i;
                 ++index;
@@ -41,27 +41,27 @@ namespace Task03_MultiplicationTable_Array
 
         private static void PrintMultiplicationTable(int[,] multiplicationTable, int[] xArray, int[] yArray)
         {
-            int leftColumnLength = yArray[yArray.Length - 1].ToString().Length;
-            int lineLength = 0;
-            int[] maxLength = new int[xArray.Length];
-            for (int i = 0; i < xArray.Length; ++i)
+            var leftColumnLength = yArray[yArray.Length - 1].ToString().Length;
+            var lineLength = 0;
+            var maxLength = new int[xArray.Length];
+            for (var i = 0; i < xArray.Length; ++i)
             {
                 maxLength[i] = multiplicationTable[yArray.Length - 1, i].ToString().Length;
                 lineLength += maxLength[i] + 1;
             }
             lineLength++;
 
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("+");
-            for (int i = 0; i < lineLength; ++i)
+            for (var i = 0; i < lineLength; ++i)
             {
                 sb.Append("-");
             }
             sb.Append("+");
-            string line = sb.ToString();
+            var line = sb.ToString();
 
             Console.Write(" {0," + leftColumnLength + "}  ", "");
-            for (int i = 0; i < xArray.Length; ++i)
+            for (var i = 0; i < xArray.Length; ++i)
             {
                 Console.Write(" {0," + maxLength[i] + "}", xArray[i]);
             }
@@ -70,10 +70,10 @@ namespace Task03_MultiplicationTable_Array
             Console.Write(" {0," + leftColumnLength + "} ", "");
             Console.WriteLine(line);
 
-            for (int i = 0; i < yArray.Length; i++)
+            for (var i = 0; i < yArray.Length; i++)
             {
                 Console.Write(" {0," + leftColumnLength + "} |", yArray[i]);
-                for (int j = 0; j < maxLength.Length; ++j)
+                for (var j = 0; j < maxLength.Length; ++j)
                 {
                     Console.Write(" {0," + maxLength[j] + "}", multiplicationTable[i, j]);
                 }
@@ -84,7 +84,7 @@ namespace Task03_MultiplicationTable_Array
             Console.WriteLine(line);
         }
 
-        static void Main(string[] args)
+        private static void Main()
         {
             int xMin, xMax, yMin, yMax;
 
@@ -128,9 +128,9 @@ namespace Task03_MultiplicationTable_Array
             }
             while (yMin >= yMax || yMin < 1);
 
-            int[,] table = GetMultiplicationTable(xMin, xMax, yMin, yMax);
-            int[] xArray = GetArray(xMin, xMax);
-            int[] yArray = GetArray(yMin, yMax);
+            var table = GetMultiplicationTable(xMin, xMax, yMin, yMax);
+            var xArray = GetArray(xMin, xMax);
+            var yArray = GetArray(yMin, yMax);
 
             Console.WriteLine();
             PrintMultiplicationTable(table, xArray, yArray);

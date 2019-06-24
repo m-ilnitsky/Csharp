@@ -2,7 +2,7 @@
 
 namespace Task04_Palindrome
 {
-    class Palindrome
+    internal class Palindrome
     {
         private static bool IsPalindrome(string inputString)
         {
@@ -27,7 +27,7 @@ namespace Task04_Palindrome
             return true;
         }
 
-        static void Main(string[] args)
+        private static void Main()
         {
             string[] inputStrings = {
                 "Аргентина манит негра",
@@ -42,9 +42,10 @@ namespace Task04_Palindrome
                 "12344321"
             };
 
-            foreach (string str in inputStrings)
+            foreach (var str in inputStrings)
             {
                 Console.WriteLine(str);
+
                 if (IsPalindrome(str))
                 {
                     Console.WriteLine("^ это палиндром");

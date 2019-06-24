@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace Task01_Rooms
+namespace Task01Rooms
 {
-    class Rooms
+    internal class Rooms
     {
-        static void Main(string[] args)
+        private static void Main()
         {
             const int roomsOnFloorCount = 4;
 
@@ -32,8 +32,8 @@ namespace Task01_Rooms
             }
             while (floorsCount < 1);
 
-            int entranceRoomsCount = floorsCount * roomsOnFloorCount;
-            int homeRoomsCount = entrancesCount * entranceRoomsCount;
+            var entranceRoomsCount = floorsCount * roomsOnFloorCount;
+            var homeRoomsCount = entrancesCount * entranceRoomsCount;
 
             Console.WriteLine();
             Console.WriteLine("В доме {0} подъездов", entrancesCount);
@@ -56,10 +56,10 @@ namespace Task01_Rooms
             }
             while (roomNumber < 1 || roomNumber > homeRoomsCount);
 
-            int roomNumberFromZero = roomNumber - 1;
-            int entranceNumber = roomNumberFromZero / entranceRoomsCount + 1;
-            int floorNumber = (roomNumberFromZero - entranceRoomsCount * (entranceNumber - 1)) / roomsOnFloorCount + 1;
-            int position = (roomNumberFromZero - entranceRoomsCount * (entranceNumber - 1)) % roomsOnFloorCount;
+            var roomNumberFromZero = roomNumber - 1;
+            var entranceNumber = roomNumberFromZero / entranceRoomsCount + 1;
+            var floorNumber = (roomNumberFromZero - entranceRoomsCount * (entranceNumber - 1)) / roomsOnFloorCount + 1;
+            var position = (roomNumberFromZero - entranceRoomsCount * (entranceNumber - 1)) % roomsOnFloorCount;
 
             Console.WriteLine();
             Console.WriteLine("В доме {0} подъездов, {1} этажей, {2} квартир", entrancesCount, floorsCount, homeRoomsCount);

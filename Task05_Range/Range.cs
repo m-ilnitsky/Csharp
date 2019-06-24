@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Task05_Range
+﻿namespace Task05_Range
 {
-    class Range
+    internal class Range
     {
         public Range(double from, double to)
         {
