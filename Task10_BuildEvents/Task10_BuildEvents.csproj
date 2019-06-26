@@ -64,6 +64,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>Xcopy  $(SolutionDir)\Task10_BuildEvents\bin\MyRelease  $(SolutionDir)\Task10_Result   /c  /r  /y</PostBuildEvent>
+    <PostBuildEvent>Xcopy  $(SolutionDir)Task10_BuildEvents\bin\MyRelease  $(SolutionDir)Task10_Result   /c  /r  /y</PostBuildEvent>
   </PropertyGroup>
 </Project>
